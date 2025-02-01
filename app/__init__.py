@@ -1,0 +1,2 @@
+BASE_PATH_APP="/app"
+BASE_PATH_ASSETS="/assets"

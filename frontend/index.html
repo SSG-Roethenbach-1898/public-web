@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSG Roethenbach 1898</title>
+
+    <link rel="stylesheet" href="/static/styles/light.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" 
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+<body>    
+    <navigation-menu></navigation-menu>
+    <div class="container">
+        <simple-greeting name="Gino"></simple-greeting>
+    </div>
+    
+    <script type="module" src="/static/scripts/components.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Load greeting from backend
+            $.ajax({
+                url: '/api/navigation',
+                type: 'GET',
+                success: function(data) {
+                    $('navigation-menu').attr("items", JSON.stringify(data));
+                },
+                error: function() {
+                    console.error('Failed to load navigation items');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

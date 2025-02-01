@@ -1,2 +1,3 @@
-# public-web
-The repository for the public website
+# SSG Röthenbach 1898
+
+This is the repository for the web of SSG Röthenbach 1898
