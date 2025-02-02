@@ -28,6 +28,10 @@ app.mount(BASE_PATH_ASSETS, StaticFiles(directory="frontend", html=True), name="
 def read_root():
     return RedirectResponse(url=f"{BASE_PATH_APP}/{STANDARD_INDEX_PATH}")
 
+@app.get(f"{BASE_PATH_APP}")
+def read_root_app():
+    return RedirectResponse(url=f"{BASE_PATH_APP}/{STANDARD_INDEX_PATH}")
+
 @app.get("/static/{path:path}")
 def provide_static(path):
     logging.info(f"Requested: {path}")
@@ -41,7 +45,7 @@ def provide_html(path):
     htmlContent = NOTFOUND_FILE.read_text()
     
     if path == "":
-        path = "index"
+        path = STANDARD_INDEX_PATH
     
     file = Path(f"frontend/{path.lower()}.html")
     if file.exists():

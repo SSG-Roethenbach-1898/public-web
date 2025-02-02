@@ -1,4 +1,5 @@
 import { LitElement, html, css } from 'https://cdn.jsdelivr.net/gh/lit/dist@3/core/lit-core.min.js';
+import { NavigationController } from './controller.js';
 
 export class SimpleGreeting extends LitElement {
     static styles = css`
@@ -24,6 +25,7 @@ customElements.define('simple-greeting', SimpleGreeting);
 
 
 export class NavigationMenu extends LitElement {
+    _navigationController = new NavigationController(this);
     static styles = css`
         nav {
             opacity: 0.8;
@@ -60,7 +62,7 @@ export class NavigationMenu extends LitElement {
                     <a class="navbar-brand" href="#">SSG Röthenbach 1898</a>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
-                            ${this.items.map(item => html`
+                            ${this._navigationController.items.map(item => html`
                                 <a class="nav-link" href="${item.url}">${item.label}</a>
                             `)}
                         </ul>
@@ -143,7 +145,10 @@ export class ContactForm extends LitElement {
     static properties = {
         name: { type: String },
         email: { type: String },
-        message: { type: String }
+        message: { type: String },
+
+        showAlert: { type: Boolean },
+        alertType: { type: String }
     };
 
     constructor() {
@@ -151,6 +156,9 @@ export class ContactForm extends LitElement {
         this.name = '';
         this.email = '';
         this.message = '';
+        this.showAlert = false;
+        this.alertType = 'success';
+        this.alertMessage = '';
     }
 
     render() {
@@ -163,7 +171,7 @@ export class ContactForm extends LitElement {
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
                 integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-            <div id="submitResponse"></div>
+            
             <form class="container" data-bs-theme="dark">
                 <div class="mb-2" data-bs-theme="dark">
                     <label for="name" class="form-label">Name:</label>
@@ -179,6 +187,13 @@ export class ContactForm extends LitElement {
                 </div>
                 <button type="submit" class="btn btn-primary" @click="${this._onsubmit}">Abschicken</button>
             </form
+            <div class="container">
+                ${this.showAlert ? html`
+                    <div id="submitResponse" class="alert alert-${this.alertType}" role="alert" data-bs-theme="dark">${this.alertMessage}</div>
+                ` : html`
+                
+                `}
+            </div>
         `;
     }
 
@@ -195,17 +210,20 @@ export class ContactForm extends LitElement {
        * Submit the form
        * @param {*} e 
        */
-    _onsubmit(e) {
+    async _onsubmit(e) {
         e.preventDefault();
 
         console.log('Form submitted:', this.name, this.email, this.message);
         if(this.name == "" || this.email == "" || this.message == "") {
-            alert("Bitte alle Felder ausfüllen.");
+            this.showAlert = true;
+            this.alertType = 'danger';
+            this.alertMessage = 'Bitte füllen Sie alle Felder aus.';
+            return;
         }
 
         // Send the form data to the server
         // Show the modal dialog with the response
-        /*fetch('/app/contact', {
+        const response = await fetch('/api/contact', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -214,17 +232,18 @@ export class ContactForm extends LitElement {
                 name: this.name,
                 email: this.email,
                 message: this.message
-            })
-        });*/
-
-        // TODO fixme, does not work
-        const responseEl = $('#submitResponse');
-        //.html("<div class='alert alert-success' role='alert'>Nachricht wurde erfolgreich versendet.</div>");
-        responseEl.attr({
-            'class': 'alert alert-success',
-            'role': 'alert'
+            }),
         });
-        responseEl.html('Nachricht wurde erfolgreich versendet.');
+
+        if(response.status == 200) {
+            this.showAlert = true;
+            this.alertType = 'success';
+            this.alertMessage = 'Ihre Nachricht wurde erfolgreich versendet.';
+        } else {
+            this.showAlert = true;
+            this.alertType = 'danger';
+            this.alertMessage = 'Ihre Nachricht konnte nicht versendet werden. Bitte versuchen Sie es später erneut.';
+        }
 
         // Reset the form
         this.name = '';

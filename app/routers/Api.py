@@ -1,5 +1,6 @@
+import logging
 from fastapi import APIRouter
-from app.model import Navigation
+from app.model import ContactForm, Navigation
 
 from app.const import BASE_PATH_APP
 
@@ -13,3 +14,8 @@ async def get_navigation():
         Navigation(url=f"{BASE_PATH_APP}/kontakt", label="Kontakt"),
         Navigation(url=f"{BASE_PATH_APP}/impressum-datenschutz", label="Impressum & Datenschutz"),
     ]
+
+@api.post("/contact")
+async def post_contact(cf: ContactForm):
+    logging.info(f"Contact form submitted: {cf}")
+    return cf
