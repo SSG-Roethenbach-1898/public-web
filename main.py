@@ -4,8 +4,10 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import RedirectResponse, HTMLResponse, FileResponse
 from pathlib import Path
 
-from app import BASE_PATH_APP, BASE_PATH_ASSETS
-from app.routers.Api import api
+from app.const import BASE_PATH_APP, BASE_PATH_ASSETS, STANDARD_INDEX_PATH, NOTFOUND_FILE
+from app.routers.api import api
+
+import logging
 
 origins = [
     "http://localhost:9090"
@@ -24,44 +26,26 @@ app.mount(BASE_PATH_ASSETS, StaticFiles(directory="frontend", html=True), name="
 
 @app.get("/")
 def read_root():
-    return RedirectResponse(url=BASE_PATH_APP)
+    return RedirectResponse(url=f"{BASE_PATH_APP}/{STANDARD_INDEX_PATH}")
 
 @app.get("/static/{path:path}")
 def provide_static(path):
-    print(f"Requested: {path}")
+    logging.info(f"Requested: {path}")
     return FileResponse(path=f"frontend/assets/{path}")
 
 @app.get(BASE_PATH_APP + "/{path:path}")
 def provide_html(path):
-    print(f"Requested: {path}")
-    htmlContent = f"""
-    <!DOCTYPE html>
-    <html>
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>SSG Roethenbach 1898</title>
-
-            <link rel="stylesheet" href="/static/styles/light.css">
-        </head>
-        <body>
-            <div class="notfound">
-                <img src="/static/img/404.png" style="border-radius: 8px; max-width: 50%; height: 50%;"></img>
-                <div>
-                    Leider existiert die Seite nicht. 😒
-                    <a href="{BASE_PATH_APP}">Hauptseite</a>
-                </div>
-            </div>
-        </body>
-    </html>
-    """    
+    logging.info(f"Requested: {path}")
+    
+    # Standard response if file not found
+    htmlContent = NOTFOUND_FILE.read_text()
+    
     if path == "":
         path = "index"
     
-    file = Path(f"frontend/{path}.html")
+    file = Path(f"frontend/{path.lower()}.html")
     if file.exists():
-        indexFile = Path(f"frontend/index.html")
-        htmlContent = indexFile.read_text()
+        htmlContent = file.read_text()
         
     return HTMLResponse(content=htmlContent)
 

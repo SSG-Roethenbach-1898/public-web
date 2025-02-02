@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSG Roethenbach 1898 - Aktuelles</title>
+
+    <script type="module" src="/static/scripts/components.js"></script>
+
+    <link rel="stylesheet" href="/static/styles/style.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" 
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</head>
+<body>    
+    <navigation-menu></navigation-menu>
+    <div class="container">
+        <content-card title="Gautreffen #2" date="02.02.2025">
+            <div>
+                <br>Am <b>30.05.2025</b> findet das n&auml;chste Gautreffen in N&uuml;rnberg statt.
+                <br>Wir freuen uns auf zahlreiche Teilnehmer und ein spannendes Turnier.
+                <br>Die Anmeldung ist ab sofort m&ouml;glich.
+                <p/>
+                <br>Wir freuen uns auf euch!
+                <br>Euer SSG Roethenbach 1898
+            </div>
+        </content-card>
+
+        <content-card title="Gautreffen" date="22.01.2025">
+            <div>
+                <br>Am <b>30.05.2025</b> findet das n&auml;chste Gautreffen in N&uuml;rnberg statt.
+                <br>Wir freuen uns auf zahlreiche Teilnehmer und ein spannendes Turnier.
+                <br>Die Anmeldung ist ab sofort m&ouml;glich.
+                <p/>
+                <br>Wir freuen uns auf euch!
+                <br>Euer SSG Roethenbach 1898
+            </div>
+        </content-card>
+    </div>
+    
+    
+    <script>
+        $(document).ready(function() {
+            // Load greeting from backend
+            $.ajax({
+                url: '/api/navigation',
+                type: 'GET',
+                success: function(data) {
+                    $('navigation-menu').attr("items", JSON.stringify(data));
+                },
+                error: function() {
+                    console.error('Failed to load navigation items');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
