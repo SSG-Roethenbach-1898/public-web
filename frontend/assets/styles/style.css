@@ -3,6 +3,7 @@ html, body {
     background-image: linear-gradient(135deg, #4f6c7e 0%, #6e704a 100%);
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
 
     -webkit-touch-callout: none;
     -webkit-user-select: none;

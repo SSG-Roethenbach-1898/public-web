@@ -1,34 +1,11 @@
 import { LitElement, html, css } from 'https://cdn.jsdelivr.net/gh/lit/dist@3/core/lit-core.min.js';
 import { NavigationController } from './controller.js';
 
-export class SimpleGreeting extends LitElement {
-    static styles = css`
-        p {
-            color: #fff;
-        }
-    `;
-
-    static properties = {
-        name: { type: String }
-    };
-
-    constructor() {
-        super();
-        this.name = 'World';
-    }
-
-    render() {
-        return html`<p>Demotext: ${this.name}!</p>`;
-    }
-}
-customElements.define('simple-greeting', SimpleGreeting);
-
-
 export class NavigationMenu extends LitElement {
     _navigationController = new NavigationController(this);
     static styles = css`
         nav {
-            opacity: 0.8;
+            backdrop-filter: blur(10px);
         }
 
         .nav-link {
@@ -141,6 +118,10 @@ export class ContactForm extends LitElement {
         input {
             margin: 0.5rem;
         }
+
+        button {
+            border: 1px solid #fff;
+        }
     `;
     static properties = {
         name: { type: String },
@@ -185,8 +166,9 @@ export class ContactForm extends LitElement {
                     <label for="message" class="form-label">Nachricht:</label>
                     <textarea class="form-control" id="message" rows="10" cols="15" .value="${this.message}" @change="${this.handleInput}"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary" @click="${this._onsubmit}">Abschicken</button>
+                <button type="submit" class="btn btn-secondary" @click="${this._onsubmit}" data-bs-theme="dark">Abschicken</button>
             </form
+
             <div class="container">
                 ${this.showAlert ? html`
                     <div id="submitResponse" class="alert alert-${this.alertType}" role="alert" data-bs-theme="dark">${this.alertMessage}</div>
@@ -245,6 +227,8 @@ export class ContactForm extends LitElement {
             this.alertMessage = 'Ihre Nachricht konnte nicht versendet werden. Bitte versuchen Sie es später erneut.';
         }
 
+        $("html, body").animate({ scrollTop: $(document).height() }, 1000);
+
         // Reset the form
         this.name = '';
         this.email = '';
@@ -253,3 +237,73 @@ export class ContactForm extends LitElement {
 }
 
 customElements.define('contact-form', ContactForm);
+
+class FooterContent extends LitElement {
+    static styles = css`
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .container {
+            opacity: 1.0;
+            backdrop-filter: blur(10px);
+        }
+
+        a:link, a:visited, a:hover, a:active {
+            color: #fff;
+        }
+
+    `;
+
+    render() {
+        return html`
+            <script src="https://code.jquery.com/jquery-3.7.1.min.js" 
+                integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
+                rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+                integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+            <footer class="sticky-bottom text-center" data-bs-theme="dark">
+                <div class="container">
+                    <div class="row h-auto">
+                        <section class="col-md-3">
+                            <br>Trainingszeiten:
+                            <br>Kugel/Luftgewehrschützen: Freitag, ab 18.00 Uhr
+                            <br>Bogenschützen: Samstag, ab 14.00 Uhr
+                        </section>
+                        <section class="col-md-2">
+                            <br>Anschrift:
+                            <br>SSG Röthenbach 1898
+                            <br>Pegnitzgrund 2
+                            <br>90552 Röthenbach an der Pegnitz
+                        </section>
+                        <section class="col-md-3">
+                            <br>Links:
+                            <br><a href="https://www.bssb.de" target="_blank">BSSB</a>
+                            <br><a href="https://www.dsb.de" target="_blank">DSB</a>
+                            <br><a href="https://schuetzengau-nuernberg.de" target="_blank">Schützengau-Nürnberg</a>
+                            <br><a href="https://bgv.bssb.de/msb" target="_blank">Mittelfränkischer Schützenbund</a>
+                        </section>
+                        <section class="col-md-3">
+                            <br>Social Media:
+                            <br><a href="FIXME" target="_blank">Facebook</a>
+                            <br><a href="FIXME" target="_blank">Instagram</a>
+                            <br><a href="FIXME" target="_blank">Twitter</a>
+                            <br><a href="FIXME" target="_blank">YouTube</a>
+                        </section>
+                    </div>
+                </div>
+
+                <div class="text-center p-1" data-bs-theme="dark">
+                    <p>&copy; ${new Date().getFullYear()} SSG Röthenbach 1898</p>
+                </div>
+            </footer>
+        `;
+    }
+}
+customElements.define('footer-content', FooterContent);
