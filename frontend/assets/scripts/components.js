@@ -126,6 +126,7 @@ export class ContactForm extends LitElement {
     static properties = {
         name: { type: String },
         email: { type: String },
+        phone: { type: String },
         message: { type: String },
 
         showAlert: { type: Boolean },
@@ -137,6 +138,7 @@ export class ContactForm extends LitElement {
         this.name = '';
         this.email = '';
         this.message = '';
+        this.phone = '';
         this.showAlert = false;
         this.alertType = 'success';
         this.alertMessage = '';
@@ -161,6 +163,10 @@ export class ContactForm extends LitElement {
                 <div class="mb-2" data-bs-theme="dark">
                     <label for="email" class="form-label">Email-Adresse:</label>
                     <input type="email" class="form-control" id="email" placeholder="Email" .value="${this.email}" @change="${this.handleInput}">
+                </div>
+                <div class="mb-2" data-bs-theme="dark">
+                    <label for="phone" class="form-label">Mobilfunknummer:</label>
+                    <input type="tel" class="form-control" id="phone" placeholder="Mobilfunknummer" .value="${this.phone}" @change="${this.handleInput}">
                 </div>
                 <div class="mb-2" data-bs-theme="dark">
                     <label for="message" class="form-label">Nachricht:</label>
@@ -213,6 +219,7 @@ export class ContactForm extends LitElement {
             body: JSON.stringify({
                 name: this.name,
                 email: this.email,
+                phone: this.phone,
                 message: this.message
             }),
         });
@@ -232,6 +239,7 @@ export class ContactForm extends LitElement {
         // Reset the form
         this.name = '';
         this.email = '';
+        this.phone = '';
         this.message = '';
     }
 }

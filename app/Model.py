@@ -7,12 +7,14 @@ class Navigation(BaseModel):
 class ContactForm(BaseModel):
     name: str = Field(..., title="Name of the person")
     email: str = Field(..., title="Email address of the person")
+    phone: str = Field(..., title="Phone number")
     message: str = Field(..., title="Message of the person")
     
     class Config:
         json_schema_extra = {
             "example": {
                 "name": "Max Mustermann",
+                "phone": "+49123456789",
                 "email": "max@mustermann.de",
                 "message": "This is a form message",
             }
