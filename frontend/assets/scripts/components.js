@@ -244,7 +244,8 @@ export class ContactForm extends LitElement {
     }
 }
 
-customElements.define('contact-form', ContactForm);
+// ups schon wieder kaputt
+//customElements.define('contact-form', ContactForm);
 
 class FooterContent extends LitElement {
     static styles = css`
