@@ -1,5 +1,6 @@
 import logging
 from fastapi import APIRouter
+from fastapi.responses import JSONResponse
 from app.model import ContactForm, Navigation
 
 from app.const import BASE_PATH_APP
@@ -18,4 +19,6 @@ async def get_navigation():
 @api.post("/contact")
 async def post_contact(cf: ContactForm):
     logging.info(f"Contact form submitted: {cf}")
-    return cf
+    # TODO implement receiving mail and notify customer
+    #return JSONResponse(content={"message": "Some error occurred."}, status_code=500)
+    return JSONResponse(content={"message": "Contact form submitted successfully."})

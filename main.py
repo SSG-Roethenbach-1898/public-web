@@ -53,4 +53,9 @@ def provide_html(path):
         
     return HTMLResponse(content=htmlContent)
 
+@app.exception_handler(404)
+def not_found_exception_handler(request, exc):
+    logging.error(f"404 Error: {exc}")
+    return HTMLResponse(content=NOTFOUND_FILE.read_text(), status_code=404)
+
 app.include_router(api)
