@@ -23,7 +23,6 @@ export function resizeWithFooter() {
 
 export function setTheme() {
     $(document).ready(function () {
-        {
             const getStoredTheme = () => localStorage.getItem('theme')
             const setStoredTheme = theme => localStorage.setItem('theme', theme)
 
@@ -95,6 +94,15 @@ export function setTheme() {
                         })
                     })
             })
-        }
     });
+}
+
+/**
+ * Initialize the helper functions.
+ * General functions that are used throughout the site.
+ */
+export function init() {
+    resizeWithFooter();
+    setTheme();
+    $('img').on('dragstart', function(event) { event.preventDefault(); });
 }
