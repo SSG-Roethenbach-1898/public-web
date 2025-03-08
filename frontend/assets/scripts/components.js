@@ -142,10 +142,16 @@ export class ContactForm extends LitElement {
                             <option value="Sehr geehrter Herr">Herr</option>
                             <option value="Sehr geehrt*">Divers</option>
                         </select>
+                        <div id="validationAnredeFeedback" class="invalid-feedback">
+                            Bitte geben Sie Ihre Anrede an.
+                        </div>
                         <input type="text" class="form-control" name="name" id="name" 
                             placeholder="Max Mustermann"
                             .value="${this.#controller.getFormValues('name')}" 
                             @change="${this._setValues}" required/>
+                        <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                            Bitte geben Sie Vor -/ und Nachname an.
+                        </div>
                     </div>
                     <div class="col-md-4">
                         <label for="email" class="form-label">Email-Adresse 
@@ -160,6 +166,9 @@ export class ContactForm extends LitElement {
                         placeholder="max.mustermann@mail.de" 
                         .value="${this.#controller.getFormValues('email')}" 
                         @change="${this._setValues}" required=""/>
+                        <div id="validationEmailFeedback" class="invalid-feedback">
+                            Bitte geben Sie eine gültige Emailadresse an.
+                        </div>
                     </div>
                     <div class="col-md-4">
                         <label for="phone" class="form-label">Telefonnummer 
@@ -171,9 +180,13 @@ export class ContactForm extends LitElement {
                             </i>
                         </label>
                         <input type="tel" class="form-control m-0" 
-                        id="phone" placeholder="(Optional) 0123/444555" 
-                        .value="${this.#controller.getFormValues('phone')}" 
-                        @change="${this._setValues}"/>
+                            id="phone" placeholder="(Optional) 0123/444555" 
+                            .value="${this.#controller.getFormValues('phone')}" 
+                            @change="${this._setValues}"
+                        />
+                        <div id="validationPhoneFeedback" class="invalid-feedback">
+                            Bitte geben Sie eine gültige Telefonnummer an.
+                        </div>
                     </div>
                 </div>
                 <div class="mb-4">
@@ -184,6 +197,9 @@ export class ContactForm extends LitElement {
                         id="message" rows="6" 
                         .value="${this.#controller.getFormValues('message')}" 
                         @change="${this._setValues}" required></textarea>
+                        <div id="validationMessageFeedback" class="invalid-feedback">
+                            Bitte geben Sie zwischen 8 und 512 Zeichen ein.
+                        </div>
                 </div>
                 <div class="mb-4" style="font-style: italic;">
                     <p>Wir werden Ihre Daten nur zur Beantwortung Ihrer Anfrage verwenden. 
@@ -199,6 +215,9 @@ export class ContactForm extends LitElement {
                     .value="${this.#controller.getFormValues('toc')}" 
                     ?checked="${this.#controller.getFormValues('toc')}" 
                     @click="${this._setValues}" required>
+                    <div id="validationTocFeedback" class="invalid-feedback">
+                        Bitte bestätigen Sie die Datenschutzerklärun.
+                    </div>
                 </div>
             </div>
                 <input id="submitBtn" type="submit" class="btn btn-primary" 
