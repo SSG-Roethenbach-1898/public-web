@@ -294,7 +294,7 @@ class ValidationForm {
                 validField = false;
             }
 
-            if(!fieldValidation.required) {
+            if(!fieldValidation.required && value === '') {
                 validField = true;
             }
 
@@ -349,9 +349,9 @@ function validateEmail(email) {
 }
 
 function validatePhone(phone) {
-    // Source: https://stackoverflow.com/a/123666
-    const re = /^\+?[\d\s?]{2}[\d]+10$/;
-    return re.test(phone) || phone === '';
+    // Source: https://stackoverflow.com/a/53854183
+    const re = /(\(?([\d \-\)\–\+\/\(]+){6,}\)?([ .\-–\/]?)([\d]+))/;
+    return re.test(phone);
 }
 
 function validateFullName(name) {
