@@ -42,20 +42,22 @@ def provide_html(path):
     logging.info(f"Requested: {path}")
     
     # Standard response if file not found
-    htmlContent = NOTFOUND_FILE.read_text()
+    htmlContent = NOTFOUND_FILE.read_text("utf-8")
     
     if path == "":
         path = STANDARD_INDEX_PATH
     
     file = Path(f"frontend/{path.lower()}.html")
     if file.exists():
-        htmlContent = file.read_text()
+        htmlContent = file.read_text("utf-8")
         
     return HTMLResponse(content=htmlContent)
 
 @app.exception_handler(404)
 def not_found_exception_handler(request, exc):
     logging.error(f"404 Error: {exc}")
-    return HTMLResponse(content=NOTFOUND_FILE.read_text(), status_code=404)
+    return HTMLResponse(
+        content=NOTFOUND_FILE
+        .read_text("utf-8"), status_code=404)
 
 app.include_router(api)
