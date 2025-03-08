@@ -32,7 +32,9 @@ export class NavigationMenu extends LitElement {
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <a class="navbar-brand" href="#">SSG Röthenbach 1898</a>
+                    <a class="navbar-brand" href="#">SSG Röthenbach 1898
+                        <img src="/static/img/ssgr-transparent.png" alt="SSG Röthenbach 1898" width="50" height="50">
+                    </a>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
                             ${this._navigationController.items.map(item => html`
@@ -264,7 +266,7 @@ class FooterContent extends LitElement {
         }
     `;
 
-    render() {
+    render() {        
         return html`
             <script src="https://code.jquery.com/jquery-3.7.1.min.js" 
                 integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
