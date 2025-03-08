@@ -10,10 +10,10 @@ api = APIRouter(prefix="/api")
 @api.get("/navigation", response_model=list[Navigation])
 async def get_navigation():
     return [
-        Navigation(url=f"{BASE_PATH_APP}/aktuelles", label="Aktuelles"),
-        Navigation(url=f"{BASE_PATH_APP}/der-verein", label="Der Verein"),
-        Navigation(url=f"{BASE_PATH_APP}/kontakt", label="Kontakt"),
-        Navigation(url=f"{BASE_PATH_APP}/impressum-datenschutz", label="Impressum & Datenschutz"),
+        Navigation(url=f"{BASE_PATH_APP}/aktuelles", label="Aktuelles", slag="aktuelles"),
+        Navigation(url=f"{BASE_PATH_APP}/der-verein", label="Der Verein", slag="der-verein"),
+        Navigation(url=f"{BASE_PATH_APP}/kontakt", label="Kontakt", slag="kontakt"),
+        Navigation(url=f"{BASE_PATH_APP}/impressum-datenschutz", label="Impressum & Datenschutz", slag="impressum"),
     ]
 
 @api.post("/contact")

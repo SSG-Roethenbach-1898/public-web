@@ -110,6 +110,7 @@ customElements.define('content-card', ContentCard);
 
 export class ContactForm extends LitElement {
     #controller = new ContactController(this);
+    #navigation = new NavigationController(this);
 
     constructor() {
         super();
@@ -186,7 +187,11 @@ export class ContactForm extends LitElement {
                 </div>
                 <div class="mb-4" style="font-style: italic;">
                     <p>Wir werden Ihre Daten nur zur Beantwortung Ihrer Anfrage verwenden. 
-                    Detaillierte Informationen zum Umgang mit Nutzerdaten finden Sie in unserer <a href="/app/impressum-datenschutz" target="_blank">Datenschutz -/ und Geschäftserklärung</a>.</p>
+                    Detaillierte Informationen zum Umgang mit Nutzerdaten finden Sie in unserer <a href=${
+                            this.#navigation.items
+                            .filter(items => items.slag === "impressum")
+                            .map(item => item.url)
+                        } target="_blank">Datenschutz -/ und Geschäftserklärung</a>.</p>
                 </div>
                 <div class="form-check">
                     <label class="form-check-label" for="toc">Akzeptieren Sie die Geschäftsbedingungen</label>

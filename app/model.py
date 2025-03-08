@@ -3,6 +3,7 @@ from pydantic import BaseModel, Field
 class Navigation(BaseModel):
     url: str = Field(..., title="URL of the page")
     label: str = Field(..., title="Label of the page")
+    slag: str = Field(..., title="Slag of the page")
     
 class ContactForm(BaseModel):
     name: str = Field(..., title="Name of the person")
