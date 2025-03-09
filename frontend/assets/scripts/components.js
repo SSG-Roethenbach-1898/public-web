@@ -374,28 +374,28 @@ class GalleryCarousel extends LitElement {
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <img class="img-fluid" src="/static/img/gallery/bogenschützen-halle.jpg" alt="...">
-                        <div class="carousel-caption d-none d-md-block box">
+                        <div class="carousel-caption d-none d-md-block">
                             <h5>Bogenschützen Halle</h5>
                             <p>Hier trainieren wir, wenn es draußen kalt wird.</p>
                         </div>   
                     </div>
                     <div class="carousel-item">
                         <img class="img-fluid" src="/static/img/gallery/bogenschützen-wiese.jpg"alt="...">
-                        <div class="carousel-caption d-none d-md-block box">
+                        <div class="carousel-caption d-none d-md-block">
                             <h5>Bogenschützenwiese</h5>
                             <p>Draußen ist es aber doch schöner...!</p>
                         </div>       
                     </div>
                     <div class="carousel-item">
                         <img class="img-fluid" src="/static/img/gallery/luftgewehr-halle.jpg" alt="...">
-                        <div class="carousel-caption d-none d-md-block box">
+                        <div class="carousel-caption d-none d-md-block">
                             <h5>Luftgewehr -/pistole Halle</h5>
                             <p>Hier trainieren unsere Luftgewehr -/pistolenschützen Halle.</p>
                         </div>   
                     </div>
                     <div class="carousel-item">
                         <img class="img-fluid" src="/static/img/gallery/gastraum.jpg" alt="...">
-                        <div class="carousel-caption d-none d-md-block box">
+                        <div class="carousel-caption d-none d-md-block">
                             <h5>Gastraum</h5>
                             <p>Nach dem Training lässt es sich hier entspannen.</p>
                         </div>   
