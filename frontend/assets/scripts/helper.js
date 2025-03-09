@@ -102,7 +102,9 @@ export function setTheme() {
  * General functions that are used throughout the site.
  */
 export function init() {
-    resizeWithFooter();
     setTheme();
+    resizeWithFooter();
+
+    // Prevent dragging of images
     $('img').on('dragstart', function(event) { event.preventDefault(); });
 }

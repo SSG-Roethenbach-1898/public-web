@@ -306,8 +306,10 @@ class FooterContent extends LitElement {
                     <div class="row h-auto">
                         <div class="col-md-4">
                             <br>Trainingszeiten:
-                            <br>Luftgewehrschützen: Freitag, 18.00 - 20.00 Uhr
-                            <br>Bogenschützen: Samstag, 14.00 - 16.00 Uhr
+                            <br>Luftgewehrschützen: 
+                            <br>Freitag, 18.00 - 20.00 Uhr
+                            <br>Bogenschützen:
+                            <br>Samstag, 14.00 - 16.00 Uhr
                         </div>
                         <div class="col-md-4">
                             <br>Anschrift:
