@@ -50,8 +50,11 @@ html, body {
 .carousel-caption {
     backdrop-filter: blur(7px);
     border-radius: 10px;
-    color: white !important;
     font-weight: bold;
+
+    color: #ffffff !important;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-shadow: h-shadow v-shadow blur-radius color;
 }
 
 @media (prefers-color-scheme: light) {

@@ -390,7 +390,7 @@ class GalleryCarousel extends LitElement {
                         <img class="img-fluid" src="/static/img/gallery/luftgewehr-halle.jpg" alt="...">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>Luftgewehr -/pistole Halle</h5>
-                            <p>Hier trainieren unsere Luftgewehr -/pistolenschützen Halle.</p>
+                            <p>Hier ist unsere LP Halle.</p>
                         </div>   
                     </div>
                     <div class="carousel-item">
