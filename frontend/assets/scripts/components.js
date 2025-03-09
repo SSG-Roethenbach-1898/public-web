@@ -33,7 +33,9 @@ export class NavigationMenu extends LitElement {
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <a class="navbar-brand" href="#">SSG Röthenbach 1898
-                        <img src="/static/img/ssgr-transparent.png" alt="SSG Röthenbach 1898" width="50" height="50">
+                        <img src="/static/img/ssgr-transparent.svg" alt="SSG Röthenbach 1898" width="50" height="50">
+                        <img src="/static/img/ssgr-bogenschützen-transparent.svg" alt="SSG Röthenbach 1898" width="50" height="50">
+
                     </a>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
