@@ -371,17 +371,24 @@ class GalleryCarousel extends LitElement {
                 <!-- Images should be 1600 x 715 for united size -->
             <div id="carouselHero" class="carousel slide pointer-event" data-bs-ride="carousel">
                 <div class="carousel-inner">
-                    ${
+                    <!--${
                         repeat(this.#galleryController.images, (image) => image, (image, index) => {
                             return html`
                                 <div class="carousel-item ${index === 0 ? 'active' : ''}">
-                                    <img class="img-fluid" src="/static/img/gallery/${image}" alt="${image}">
+                                    <img class="img-fluid" src="/static/img/gallery/${image.url}" alt="${image.alt}">
+                                    <!-- The description of the image will come from server later
+                                        <div class="carousel-caption d-none d-md-block">
+                                            <h5>${image.title}</h5>
+                                            <p>${image.description}</p>
+                                        </div>       
+                                    -->
                                 </div>
                             `;
                         })
-                    }
+                    }-->
 
-                    <!--div class="carousel-item active">
+                    <!-- Hardcoded images for now -->
+                    <div class="carousel-item active">
                         <img class="img-fluid" src="/static/img/gallery/bogenschützen-halle.jpg" alt="...">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>Bogenschützen Halle</h5>
@@ -408,8 +415,9 @@ class GalleryCarousel extends LitElement {
                             <h5>Gastraum</h5>
                             <p>Nach dem Training lässt es sich hier entspannen.</p>
                         </div>   
-                    </div-->
+                    </div>
                 </div>
+
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselHero" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
