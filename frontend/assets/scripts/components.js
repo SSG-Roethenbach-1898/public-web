@@ -352,3 +352,66 @@ class FooterContent extends LitElement {
     }
 }
 customElements.define('footer-content', FooterContent);
+
+class GalleryCarousel extends LitElement {
+
+    /* TODO get images from backend dynamically with descriptions and etc. */
+    createRenderRoot() {
+        return this;
+    }
+
+    render() {
+        return html`
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
+                rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+            <script src="https://code.jquery.com/jquery-3.7.1.min.js" 
+                integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+                integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+                <!-- Images should be 1600 x 715 for united size -->
+            <div id="carouselHero" class="carousel slide pointer-event" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img class="img-fluid" src="/static/img/gallery/bogenschützen-halle.jpg" alt="...">
+                        <div class="carousel-caption d-none d-md-block box">
+                            <h5>Bogenschützen Halle</h5>
+                            <p>Hier trainieren wir, wenn es draußen kalt wird.</p>
+                        </div>   
+                    </div>
+                    <div class="carousel-item">
+                        <img class="img-fluid" src="/static/img/gallery/bogenschützen-wiese.jpg"alt="...">
+                        <div class="carousel-caption d-none d-md-block box">
+                            <h5>Bogenschützenwiese</h5>
+                            <p>Draußen ist es aber doch schöner...!</p>
+                        </div>       
+                    </div>
+                    <div class="carousel-item">
+                        <img class="img-fluid" src="/static/img/gallery/luftgewehr-halle.jpg" alt="...">
+                        <div class="carousel-caption d-none d-md-block box">
+                            <h5>Luftgewehr -/pistole Halle</h5>
+                            <p>Hier trainieren unsere Luftgewehr -/pistolenschützen Halle.</p>
+                        </div>   
+                    </div>
+                    <div class="carousel-item">
+                        <img class="img-fluid" src="/static/img/gallery/gastraum.jpg" alt="...">
+                        <div class="carousel-caption d-none d-md-block box">
+                            <h5>Gastraum</h5>
+                            <p>Nach dem Training lässt es sich hier entspannen.</p>
+                        </div>   
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselHero" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselHero" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+    
+        `;
+    }
+}
+customElements.define('gallery-carousel', GalleryCarousel);
