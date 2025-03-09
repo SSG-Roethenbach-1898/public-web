@@ -1,15 +1,9 @@
 import { LitElement, html, css } from 'https://cdn.jsdelivr.net/gh/lit/dist@3/core/lit-core.min.js';
-import { NavigationController, ContactController } from './controller.js';
+import { repeat }  from 'https://unpkg.com/lit-html/directives/repeat.js';
+import { NavigationController, ContactController, GalleryController } from './controller.js';
 
 export class NavigationMenu extends LitElement {
-    _navigationController = new NavigationController(this);
-    static styles = css`
-
-    `;
-
-    static properties = {
-        items: { type: Object }
-    };
+    #navigationController = new NavigationController(this);
 
     createRenderRoot() {
         return this;
@@ -17,7 +11,6 @@ export class NavigationMenu extends LitElement {
 
     constructor() {
         super();
-        this.items = [];
     }
 
     render() {
@@ -39,7 +32,7 @@ export class NavigationMenu extends LitElement {
                     </a>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
-                            ${this._navigationController.items.map(item => html`
+                            ${this.#navigationController.items.map(item => html`
                                 <a class="nav-link" href="${item.url}">${item.label}</a>
                             `)}
                         </ul>
@@ -356,13 +349,26 @@ class FooterContent extends LitElement {
 customElements.define('footer-content', FooterContent);
 
 class GalleryCarousel extends LitElement {
+    #galleryController = new GalleryController(this);
 
-    /* TODO get images from backend dynamically with descriptions and etc. */
+    constructor() {
+        super();
+    }
+
     createRenderRoot() {
         return this;
     }
 
     render() {
+        const imageTemplate = [];
+        for (const image of this.#galleryController.images) {
+            imageTemplate.push(html`
+                <div class="carousel-item">
+                    <img class="img-fluid" src="/static/img/gallery/${image}" alt="${image}">
+                </div>
+            `);
+        }
+
         return html`
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
                 rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -374,7 +380,17 @@ class GalleryCarousel extends LitElement {
                 <!-- Images should be 1600 x 715 for united size -->
             <div id="carouselHero" class="carousel slide pointer-event" data-bs-ride="carousel">
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
+                    ${
+                        repeat(this.#galleryController.images, (image) => image, (image, index) => {
+                            return html`
+                                <div class="carousel-item ${index === 0 ? 'active' : ''}">
+                                    <img class="img-fluid" src="/static/img/gallery/${image}" alt="${image}">
+                                </div>
+                            `;
+                        })
+                    }
+
+                    <!--div class="carousel-item active">
                         <img class="img-fluid" src="/static/img/gallery/bogenschützen-halle.jpg" alt="...">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>Bogenschützen Halle</h5>
@@ -401,7 +417,7 @@ class GalleryCarousel extends LitElement {
                             <h5>Gastraum</h5>
                             <p>Nach dem Training lässt es sich hier entspannen.</p>
                         </div>   
-                    </div>
+                    </div-->
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselHero" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -412,7 +428,6 @@ class GalleryCarousel extends LitElement {
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
-    
         `;
     }
 }

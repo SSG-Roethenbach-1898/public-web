@@ -1,4 +1,5 @@
 import logging
+import os
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
 from app.model import ContactForm, Navigation
@@ -15,6 +16,10 @@ async def get_navigation():
         Navigation(url=f"{BASE_PATH_APP}/kontakt", label="Kontakt", slag="kontakt"),
         Navigation(url=f"{BASE_PATH_APP}/impressum-datenschutz", label="Impressum & Datenschutz", slag="impressum"),
     ]
+
+@api.get("/gallery")
+async def get_gallery():
+    return os.listdir("frontend/assets/img/gallery")
 
 @api.post("/contact")
 async def post_contact(cf: ContactForm):

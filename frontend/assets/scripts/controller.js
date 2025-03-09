@@ -230,6 +230,27 @@ export class ContactController {
     }
 }
 
+export class GalleryController {
+    host;
+    images = [];
+
+    constructor(host) {
+        this.host = host;
+        host.addController(this);
+    }
+
+    hostConnected() {
+        fetch('/api/gallery', {
+            method: 'GET'
+        })
+            .then(response => response.json())
+            .then(data => {
+                this.images = data;
+                this.host.requestUpdate();
+            });
+    }
+}
+
 class ValidationForm {
     shadowRoot;
 
