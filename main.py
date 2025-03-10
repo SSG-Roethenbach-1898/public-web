@@ -10,10 +10,12 @@ from app.routers.api import api
 import logging
 
 origins = [
-    "http://localhost:9090"
+    "http://localhost:9090",
+    # TODO Add production URL
 ]
 
-app = FastAPI(title="SSG Roethenbach 1898", version="0.1.0")
+api_routes_counter = str(len(api.routes))
+app = FastAPI(title="SSG Roethenbach 1898", version="2025." + api_routes_counter + ".0")
 
 app.add_middleware(
     CORSMiddleware,
@@ -61,3 +63,8 @@ def not_found_exception_handler(request, exc):
         .read_text("utf-8"), status_code=404)
 
 app.include_router(api)
+
+if __name__ == "__main__":
+    import uvicorn
+    import settings
+    uvicorn.run(app, log_config=settings.LOGGING_CONFIG)

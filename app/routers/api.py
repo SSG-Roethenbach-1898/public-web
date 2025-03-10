@@ -19,6 +19,11 @@ async def get_navigation():
 
 @api.get("/gallery")
 async def get_gallery():
+    # TODO implement reading gallery images from database, this is just a nasty workaround to provide dynamically the images
+    # Model should contain
+    #   title
+    #   description
+    #   
     return os.listdir("frontend/assets/img/gallery")
 
 @api.post("/contact")
