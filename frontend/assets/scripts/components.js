@@ -64,7 +64,7 @@ export class ContentCard extends LitElement {
         }
 
         div {
-            color: #fff;
+            color: var(--textcolor);
         }
     `;
 
@@ -75,7 +75,7 @@ export class ContentCard extends LitElement {
 
     constructor() {
         super();
-        this.title = 'Title';
+        this.title = '';
         this.date = Date().toLocaleString("de-DE");
     }
 
