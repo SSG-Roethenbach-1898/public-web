@@ -1,5 +1,4 @@
-import { LitElement, html, css } from 'https://cdn.jsdelivr.net/gh/lit/dist@3/core/lit-core.min.js';
-import { repeat }  from 'https://unpkg.com/lit-html/directives/repeat.js';
+import { LitElement, html, css, repeat } from 'https://cdn.jsdelivr.net/gh/lit/dist@3/all/lit-all.min.js';
 import { NavigationController, ContactController, GalleryController } from './controller.js';
 
 export class NavigationMenu extends LitElement {

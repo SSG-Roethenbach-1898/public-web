@@ -4,7 +4,7 @@ from fastapi import APIRouter
 from fastapi.responses import JSONResponse
 from app.model import ContactForm, Navigation
 
-from app.const import BASE_PATH_APP
+from app.const import BASE_PATH_APP, FRONTEND_PATH
 
 api = APIRouter(prefix="/api")
 
@@ -24,7 +24,7 @@ async def get_gallery():
     #   title
     #   description
     #   
-    return os.listdir("frontend/assets/img/gallery")
+    return os.listdir(f"{FRONTEND_PATH}/assets/img/gallery")
 
 @api.post("/contact")
 async def post_contact(cf: ContactForm):

@@ -5,4 +5,5 @@ BASE_PATH_APP="/ssg"
 BASE_PATH_ASSETS="/assets"
 
 STANDARD_INDEX_PATH="aktuelles"
-NOTFOUND_FILE=Path("frontend/404.html")
+FRONTEND_PATH = Path("public-frontend")
+NOTFOUND_FILE=Path(f"{FRONTEND_PATH}/404.html")

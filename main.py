@@ -4,7 +4,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import RedirectResponse, HTMLResponse, FileResponse
 from pathlib import Path
 
-from app.const import BASE_PATH_APP, BASE_PATH_ASSETS, STANDARD_INDEX_PATH, NOTFOUND_FILE
+from app.const import BASE_PATH_APP, BASE_PATH_ASSETS, STANDARD_INDEX_PATH, NOTFOUND_FILE, FRONTEND_PATH
 from app.routers.api import api
 
 import logging
@@ -24,7 +24,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-app.mount(BASE_PATH_ASSETS, StaticFiles(directory="frontend", html=True), name="frontend")
+
+app.mount(BASE_PATH_ASSETS, StaticFiles(directory=FRONTEND_PATH, html=True), name="frontend")
 
 @app.get("/")
 def read_root():
@@ -37,7 +38,7 @@ def read_root_app():
 @app.get("/static/{path:path}")
 def provide_static(path):
     logging.info(f"Requested: {path}")
-    return FileResponse(path=f"frontend/assets/{path}")
+    return FileResponse(path=f"{FRONTEND_PATH}/assets/{path}")
 
 @app.get(BASE_PATH_APP + "/{path:path}")
 def provide_html(path):
@@ -49,7 +50,7 @@ def provide_html(path):
     if path == "":
         path = STANDARD_INDEX_PATH
     
-    file = Path(f"frontend/{path.lower()}.html")
+    file = Path(f"{FRONTEND_PATH}/{path.lower()}.html")
     if file.exists():
         htmlContent = file.read_text("utf-8")
         
