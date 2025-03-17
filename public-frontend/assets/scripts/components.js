@@ -374,7 +374,7 @@ class GalleryCarousel extends LitElement {
                         repeat(this.#galleryController.images, (image) => image, (image, index) => {
                             return html`
                                 <div class="carousel-item ${index === 0 ? 'active' : ''}">
-                                    <img class="img-fluid" src="/static/img/gallery/${image.url}" alt="${image.alt}">
+                                    <img class="img-fluid w-100" src="/static/img/gallery/${image.url}" alt="${image.alt}">
                                     <!-- The description of the image will come from server later
                                         <div class="carousel-caption d-none d-md-block">
                                             <h5>${image.title}</h5>
@@ -388,28 +388,28 @@ class GalleryCarousel extends LitElement {
 
                     <!-- Hardcoded images for now -->
                     <div class="carousel-item active">
-                        <img class="img-fluid" src="/static/img/gallery/bogenschützen-halle.jpg" alt="...">
+                        <img class="img-fluid w-100" src="/static/img/gallery/bogenschützen-halle.jpg" alt="...">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>Bogenschützen Halle</h5>
                             <p>Hier trainieren wir, wenn es draußen kalt wird.</p>
                         </div>   
                     </div>
                     <div class="carousel-item">
-                        <img class="img-fluid" src="/static/img/gallery/bogenschützen-wiese.jpg"alt="...">
+                        <img class="img-fluid w-100" src="/static/img/gallery/bogenschützen-wiese.jpg"alt="...">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>Bogenschützenwiese</h5>
                             <p>Draußen ist es aber doch schöner...!</p>
                         </div>       
                     </div>
                     <div class="carousel-item">
-                        <img class="img-fluid" src="/static/img/gallery/luftgewehr-halle.jpg" alt="...">
+                        <img class="img-fluid w-100" src="/static/img/gallery/luftgewehr-halle.jpg" alt="...">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>Luftgewehr -/pistole Halle</h5>
                             <p>Hier ist unsere LP Halle.</p>
                         </div>   
                     </div>
                     <div class="carousel-item">
-                        <img class="img-fluid" src="/static/img/gallery/gastraum.jpg" alt="...">
+                        <img class="img-fluid w-100" src="/static/img/gallery/gastraum.jpg" alt="...">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>Gastraum</h5>
                             <p>Nach dem Training lässt es sich hier entspannen.</p>
