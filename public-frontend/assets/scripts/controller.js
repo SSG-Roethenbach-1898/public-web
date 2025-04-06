@@ -142,27 +142,43 @@ export class ContactController {
      */
     async submit() {
         console.debug('Submitting the form:', this.formValues);
+        const formObject = {
+            anrede: this.formValues.anrede.value,
+            name: this.formValues.name.value,
+            email: this.formValues.email.value,
+            phone: this.formValues.phone.value,
+            message: this.formValues.message.value
+        };
+        const payload = JSON.stringify(formObject);
+
+        try {
+            JSON.parse(payload);
+        } catch (error) {
+            this.showAlert = true;
+            this.alertType = 'danger';
+            this.alertMessage = 'Ihre Nachricht konnte nicht versendet werden. Bitte überprüfen Sie Ihre Eingaben.';
+        }
 
         await fetch('/api/contact', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-                anrede: this.formValues.anrede.value,
-                name: this.formValues.name.value,
-                email: this.formValues.email.value,
-                phone: this.formValues.phone.value,
-                message: this.formValues.message.value
-            })
+            body: payload
         })
             .then(response => {
                 if(response.status == 200) {
                     this.showAlert = true;
                     this.alertType = 'success';
+                    console.debug('Message sent successfully:', response);
                     this.alertMessage = 'Ihre Nachricht wurde erfolgreich versendet.';
 
                     this.clearForm();
+
+                    let promise = response.json();
+                    promise.then(data => {                        
+                        this.alertMessage = 'Ihre Nachricht wurde erfolgreich versendet. ' + data.message;
+                    });
                 } else {
                     let promise = response.json();
                     promise.then(data => {
