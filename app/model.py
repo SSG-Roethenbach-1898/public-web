@@ -6,6 +6,7 @@ class Navigation(BaseModel):
     slag: str = Field(..., title="Slag of the page")
     
 class ContactForm(BaseModel):
+    anrede: str = Field(..., title="Anrede of the person")
     name: str = Field(..., title="Name of the person")
     email: str = Field(..., title="Email address of the person")
     phone: str = Field(..., title="Phone number")
