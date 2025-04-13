@@ -45,7 +45,7 @@ class EmailService():
             return JSONResponse(content={"message": f"Contact form submitted successfully."})
             
         except Exception as e:
-            print(e)
+            logging.error(f"Error sending email: {e}")
             return JSONResponse(content={"message": "An error occurred while sending the email."}, status_code=500)
     
     def __create_email__(self, contactForm: CF):
