@@ -5,8 +5,10 @@ from fastapi.responses import JSONResponse
 from app.model import ContactForm, Navigation
 
 from app.const import BASE_PATH_APP, FRONTEND_PATH
+from app.service import EmailService
 
 api = APIRouter(prefix="/api")
+emailService = EmailService()
 
 @api.get("/navigation", response_model=list[Navigation])
 async def get_navigation():
@@ -29,6 +31,5 @@ async def get_gallery():
 @api.post("/contact")
 async def post_contact(cf: ContactForm):
     logging.info(f"Contact form submitted: {cf}")
-    # TODO implement receiving mail and notify customer
-    #return JSONResponse(content={"message": "Some error occurred."}, status_code=500)
-    return JSONResponse(content={"message": "Contact form submitted successfully."})
+    
+    return emailService.send_email(cf)

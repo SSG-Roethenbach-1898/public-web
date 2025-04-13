@@ -20,8 +20,22 @@ In future, it will be server side rendered, to make it possible to provide the c
 * (More to continue in future,
     e.g. DB like MySQL, SSR with templating Jinja2)
 
+## Setup Backend
+
+* Create a file `.env.yaml` here next to the README
+* Enter your SMTP configuration in this format:
+
+```yaml
+smtp:
+    server: "your.mail.server"
+    port: 465
+    address: "your.receivition@your.mail.server"
+    password: "your account password"
+
+```
+
 ## License
 
 It's important to know, the code is under AGPL2. All you change, must be play back to the original code.
 
-![SSG Röthenbach 1898](./frontend/assets/img/ssgr-transparent.png)
+![SSG Röthenbach 1898](./public-frontend/assets/img/ssgr-transparent.png)
