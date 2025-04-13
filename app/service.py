@@ -71,8 +71,12 @@ class ConfigService():
         self.config = self.__load_config__()
         
     def __load_config__(self):
-        with open(CONFIG_PATH, "r") as file:
-            return yaml.safe_load(file)
+        try:
+            with open(CONFIG_PATH, "r") as file: 
+                return yaml.safe_load(file)
+        except Exception as e:
+            logging.error(f"Error loading config: {e}")
+            return e
     
     def get_config(self):
         return self.config
