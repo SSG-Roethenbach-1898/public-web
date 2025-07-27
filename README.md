@@ -36,6 +36,14 @@ smtp:
 
 ## License
 
-It's important to know, the code is under AGPL2. All you change, must be play back to the original code.
+This project is licensed under the GNU Affero General Public License v3 (AGPLv3). Key points:
+
+* **Free Usage:** You can use, copy, and distribute this software freely
+* **Source Code Access:** Source code must remain available
+* **Modifications Allowed:** You may modify and improve the software
+* **Network Copyleft:** If you run this software on a server accessible over a network, you must make your source code (including modifications) available to users
+* **Same License:** All derivative works must use the AGPLv3 license
+
+For the complete license text, see the LICENSE file in this repository.
 
 ![SSG Röthenbach 1898](./public-frontend/assets/img/ssgr-transparent.png)
