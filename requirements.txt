@@ -3,6 +3,7 @@ anyio==4.8.0
 certifi==2024.12.14
 click==8.1.8
 colorama==0.4.6
+dedent==0.5
 dnspython==2.7.0
 email_validator==2.2.0
 exceptiongroup==1.2.2

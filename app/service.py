@@ -1,5 +1,6 @@
 import smtplib, ssl
 import logging, yaml
+import textwrap
 from email.mime.text import MIMEText
 from fastapi.responses import JSONResponse
 
@@ -54,13 +55,14 @@ class EmailService():
         
         ---------------------------------------
         Kontaktdaten:
+        
         Anrede: {contactForm.anrede}
         Name: {contactForm.name}
         Email: {contactForm.email}
         Phone: {contactForm.phone}
         """
         
-        message = MIMEText(text, "plain")
+        message = MIMEText(textwrap.dedent(text), "plain")
         return message
     
 class ConfigService():

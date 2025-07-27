@@ -1,6 +1,11 @@
 import { LitElement, html, css, repeat } from 'https://cdn.jsdelivr.net/gh/lit/dist@3/all/lit-all.min.js';
 import { NavigationController, ContactController, GalleryController } from './controller.js';
 
+const jqueryScript = '<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>';
+const bootstrapStyles = '<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">';
+const bootstrapScript = 'script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script-->';
+const bootstrapIcons = '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">';
+
 export class NavigationMenu extends LitElement {
     #navigationController = new NavigationController(this);
 
@@ -14,10 +19,7 @@ export class NavigationMenu extends LitElement {
 
     render() {
         return html`
-            <script src="https://code.jquery.com/jquery-3.7.1.min.js" 
-                integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
-                rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+            ${bootstrapStyles}
  
             <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary">
                 <div class="container-fluid">
@@ -49,8 +51,8 @@ export class NavigationMenu extends LitElement {
                     </span-->
                 </div>
             </nav>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
-                integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+            ${jqueryScript}
+            ${bootstrapScript}
         `;
     }
 }
@@ -80,12 +82,7 @@ export class ContentCard extends LitElement {
 
     render() {
         return html`
-            <script src="https://code.jquery.com/jquery-3.7.1.min.js" 
-                integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
-                rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
-                integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+            ${bootstrapStyles}
 
             <div class="card">
                 <div class="card-header">
@@ -97,6 +94,9 @@ export class ContentCard extends LitElement {
                     <slot></slot>
                 </div>
             </div>
+
+            ${jqueryScript}
+            ${bootstrapScript}
         `;
     }
 }
@@ -112,8 +112,7 @@ export class ContactForm extends LitElement {
 
     render() {
         return html`
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
-                rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+            ${bootstrapStyles}
 
             <form class="container-fluid p-2 m-3 w-auto bg-body-secondary">
                 <h2>Kontaktformular</h2>
@@ -226,10 +225,8 @@ export class ContactForm extends LitElement {
                 ` : html``}
             </div>
 
-            <script src="https://code.jquery.com/jquery-3.7.1.min.js" 
-                integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
-                integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+            ${jqueryScript}
+            ${bootstrapScript}
             `
     }
 
@@ -286,14 +283,8 @@ class FooterContent extends LitElement {
 
     render() {        
         return html`
-            <script src="https://code.jquery.com/jquery-3.7.1.min.js" 
-                integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
-                rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
-                integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+            ${bootstrapStyles}
+            ${bootstrapIcons}
 
             <footer class="footer sticky-bottom text-center">
                 <div class="container-sm">
@@ -360,12 +351,7 @@ class GalleryCarousel extends LitElement {
 
     render() {
         return html`
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
-                rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-            <script src="https://code.jquery.com/jquery-3.7.1.min.js" 
-                integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
-                integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+            ${bootstrapStyles}
 
                 <!-- Images should be 1600 x 715 for united size -->
             <div id="carouselHero" class="carousel slide pointer-event" data-bs-ride="carousel">
@@ -426,6 +412,9 @@ class GalleryCarousel extends LitElement {
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
+            
+            ${jqueryScript}
+            ${bootstrapScript}
         `;
     }
 }
