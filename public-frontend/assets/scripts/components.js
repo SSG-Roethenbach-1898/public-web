@@ -295,7 +295,7 @@ class FooterContent extends LitElement {
                 integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-            <footer class="footer sticky-bottom text-center">
+            <footer class="footer sticky-bottom text-center container-fluid w-auto bg-body-secondary">
                 <div class="container-sm">
                     <div class="row h-auto">
                         <div class="col-md-4">
@@ -342,6 +342,8 @@ class FooterContent extends LitElement {
                     <p>&copy; ${new Date().getFullYear()} SSG Röthenbach 1898</p>
                 </div>
             </footer>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+                integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         `;
     }
 }
