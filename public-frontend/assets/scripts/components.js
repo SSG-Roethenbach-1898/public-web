@@ -210,7 +210,7 @@ export class ContactForm extends LitElement {
                     ?checked="${this.#controller.getFormValues('toc')}" 
                     @click="${this._setValues}" required>
                     <div id="validationTocFeedback" class="invalid-feedback">
-                        Bitte bestätigen Sie die Datenschutzerklärun.
+                        Bitte bestätigen Sie die Datenschutzerklärung.
                     </div>
                 </div>
             </div>
