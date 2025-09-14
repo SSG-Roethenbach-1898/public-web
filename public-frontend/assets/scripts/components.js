@@ -115,7 +115,7 @@ export class ContactForm extends LitElement {
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
                 rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-            <form class="container-fluid p-2 m-3 w-auto bg-body-secondary">
+            <form class="container p-2 m-3 w-auto bg-body-secondary">
                 <h2>Kontaktformular</h2>
                 <div class="row w-auto p-2">
                     <div class="col-md-4">
@@ -388,7 +388,7 @@ class GalleryCarousel extends LitElement {
                         })
                     }-->
 
-                    <!-- Hardcoded images for now -->
+                    <!-- TODO Hardcoded images for now -->
                     <div class="carousel-item active">
                         <img class="img-fluid w-100" src="/static/img/gallery/bogenschützen-halle.jpg" alt="...">
                         <div class="carousel-caption d-none d-md-block">
