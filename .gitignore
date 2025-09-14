@@ -170,5 +170,8 @@ cython_debug/
 # PyPI configuration file
 .pypirc
 
+# local dev files
+.ideas/
+
 # Application files
 .env.yaml

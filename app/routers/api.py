@@ -4,10 +4,10 @@ from fastapi import APIRouter
 from fastapi.responses import JSONResponse
 from app.model import ContactForm, Navigation
 
-from app.const import BASE_PATH_APP, FRONTEND_PATH
+from app.const import BASE_PATH_APP, FRONTEND_PATH, BASE_PATH_API
 from app.service import EmailService
 
-api = APIRouter(prefix="/api")
+api = APIRouter(prefix=BASE_PATH_API)
 emailService = EmailService()
 
 @api.get("/navigation", response_model=list[Navigation])

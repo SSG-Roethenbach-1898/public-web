@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="de">
-    <head>
+    <header>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>SSG R&ouml;thenbach 1898</title>
+        <title>SSG R&ouml;thenbach 1898 {% if title %}- {{ title }}{% endif %}</title>
         <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon">
         <link rel="icon" href="/static/img/favicon.ico" type="image/x-icon">
 
@@ -15,17 +15,25 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    </head>
-    <body oncontextmenu="return false;">
+        <style>
+            html,
+            body {
+                height: 100%;
+                margin: 0;
+            }
+        </style>
+    </header>
+    <body>
+        {% if show_navigation %}
         <navigation-menu></navigation-menu>
-        <div class="notfound container mt-5">
-            <img src="/static/img/404.png" style="max-width: 50%; max-height: 50%;"></img>
-            <h2>Ups, 404. Nicht getroffen. 🏹</h2>
-        </div>
+        {% endif %}
+        {% block content %}{% endblock %}
+        {% if show_footer %}
+        <footer-content></footer-content>
+        {% endif %}
     </body>
     <script type="module">
-      import { init } from '/static/scripts/helper.js';
-    
-      init();
+    import { init } from '/static/scripts/helper.js';
+    init();
     </script>
 </html>
