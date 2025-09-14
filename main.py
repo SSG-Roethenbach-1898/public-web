@@ -6,17 +6,24 @@ from fastapi.responses import RedirectResponse, HTMLResponse, FileResponse
 from starlette.templating import Jinja2Templates
 from pathlib import Path
 
-from app.const import BASE_PATH_APP, BASE_PATH_ASSETS, STANDARD_INDEX_PATH, NOTFOUND_FILE, FRONTEND_PATH
+from app.service import ConfigService
+from app.const import BASE_PATH_APP, BASE_PATH_ASSETS, STANDARD_INDEX_PATH, FRONTEND_PATH, BASE_PATH_CC_API_LOGIN
 from app.routers.api import api
+from app.routers.cc_api import apiCC
 
 import logging
 
+configService = ConfigService()
+config = configService.get_config()
+
 origins = [
     "http://localhost:9090",
-    # TODO Add production URL
+    config["app"]["origin"]
 ]
 
 api_routes_counter = str(len(api.routes))
+api_routes_counter += str(len(apiCC.routes))
+
 app = FastAPI(title="SSG Roethenbach 1898", version="2025." + api_routes_counter + ".0")
 
 app.add_middleware(
@@ -28,7 +35,7 @@ app.add_middleware(
 )
 
 app.mount(BASE_PATH_ASSETS, StaticFiles(directory=FRONTEND_PATH, html=True), name="frontend")
-templates = Jinja2Templates(directory="app/templates")
+templates = Jinja2Templates(directory="app/frontend-templates")
 
 @app.get("/")
 def read_root():
@@ -47,9 +54,9 @@ async def render_site(path: Path, request: Request):
     
     try:
         basic_context = {
-                "show_navigation": True,
-                "show_footer": True
-            }
+            "show_navigation": True,
+            "show_footer": True
+        }
         
         # TODO Add page specific context here from db needed
         
@@ -77,14 +84,15 @@ def provide_static(path):
     logging.info(f"Requested: {path}")
     return FileResponse(path=f"{FRONTEND_PATH}/assets/{path}")
 
-@app.exception_handler(404)
-def not_found_exception_handler(request, exc):
-    logging.error(f"404 Error: {exc}")
-    return HTMLResponse(
-        content=NOTFOUND_FILE
-        .read_text("utf-8"), status_code=404)
+# @app.exception_handler(404)
+# def not_found_exception_handler(request, exc):
+#     logging.error(f"404 Error: {exc}")
+#     return HTMLResponse(
+#         content=NOTFOUND_FILE
+#         .read_text("utf-8"), status_code=404)
 
 app.include_router(api)
+app.include_router(apiCC)
 
 if __name__ == "__main__":
     import uvicorn
